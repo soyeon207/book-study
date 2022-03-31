@@ -2,23 +2,21 @@ import java.util.*;
 
 public class 이진탐색_for {
 
-    public void binary_search(int target, int[] arr) {
+    public static int binary_search(int target, int[] arr) {
+        int start = 0, end = arr.length, mid;
         
-        int start = 0;
-        int end = arr.size();
-        int mid = (start + end) / 2;
-        int count = 0;
-        
-        while(start != mid && end != mid) {
+        while(start <= end) {
+            mid = (start + end) / 2;
             if (target == arr[mid]) {
-                return count;
+                return mid + 1;
             } else if (target < arr[mid]) {
-                
+                end = mid - 1;
             } else if (target > arr[mid]) {
-                
-            }
+                start = mid + 1;
+            }   
         }
-        
+
+        return -1;
     }
 
     public static void main(String[] args) {
@@ -32,7 +30,8 @@ public class 이진탐색_for {
             arr[i] = sc.nextInt();
         }
         
-        binary_search(target, arr);
+        int count = binary_search(target, arr);
+        System.out.println(count == -1 ? "원소가 존재하지 않습니다.": count);
         
     }
 
