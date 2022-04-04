@@ -8,8 +8,8 @@ class Main {
         
         if (start > end) return -1;
         if(arr[mid] == target) return mid + 1;
-        else if (arr[mid] < target) return binarySerach(arr, target, start, mid-1);
-        else return binarySerach(arr, target, mid + 1, end); 
+        else if (arr[mid] < target) return binarySerach(arr, target, mid+1, end);
+        else return binarySerach(arr, target, start, mid-1); 
     }
     
     public static void main(String[] args) {
@@ -21,13 +21,13 @@ class Main {
             arr_n[i] = sc.nextInt();
         }
         
+        Arrays.sort(arr_n);
+        
         int M = sc.nextInt();
         int mm;
         boolean isContain;
         for(int i=0;i<M;i++) {
             mm = sc.nextInt();
-            
-            System.out.println("mm : "+mm);
             isContain = binarySerach(arr_n, mm, 0, N-1) != -1 ;
             System.out.print(isContain ? "yes " : "no ");
         }
