@@ -15,25 +15,28 @@ class soyeon {
         
         int n = 0;
         for(int i=1;i<=M;i++) {
+            n = 0;
             for(int j=0;j<N;j++) {
-                if (i < money[j] || i - money[j] < 0) {
+            // for(int j=N-1;j>=0;j--) {
+                if (i == money[j]) {
+                     n = 1;
+                    break;
+                } else if (i < money[j]) {
                     n = -1;
-                    continue;
-                } else if (i == money[j]) {
-                    n = 1;
-                    continue;
-                } else if (n == 0 || count[i - money[j]] < n)  {
+                } else if ((n == 0 || n == -1 || count[i - money[j]] + 1 < n) && count[i - money[j]] != -1)  {
                     n = count[i - money[j]] + 1;
+                    break;
                 }
             }
             
             count[i] = n;
         }
         
-        for(int c:count) {
-            System.out.println(c);
-        }
+        // for(int i=1;i<=M;i++) {
+        //     System.out.println(count[i]);
+        // }
         
         System.out.println(count[M]);
+        
     }
 }
